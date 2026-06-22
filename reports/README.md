@@ -1,56 +1,62 @@
-# Security Reports
+# 九峰职业学校安全评估报告目录
 
-This repository contains security audit and penetration testing reports.
+本目录包含九峰职业学校网络安全评估的所有相关报告。
 
-## Reports
+---
 
-### 1. [192.168.20.0/24 Audit Report](192.168.20.0_24_audit_report.md)
-- **Date**: 2026-06-18
-- **Scope**: 192.168.20.0/24 subnet
-- **Type**: Network security audit
-- **Key Findings**: 
-  - Unauthorized Xiaomi router (192.168.20.23)
-  - Windows 7 SP1 vulnerable host (192.168.20.19)
-  - RDP exposure (192.168.20.14, 192.168.20.50)
-  - Hikvision cameras with RTSP open
+## 报告列表
 
-### 2. [九峰职业学校 Network Penetration Test](九峰职业学校网络渗透测试报告.md)
-- **Date**: 2026-01-08 to 2026-06-11
-- **Scope**: School network (192.168.20.0/24, 10.5.190.0/24)
-- **Type**: Penetration test
-- **Key Findings**:
-  - Critical: MQTT Broker unauthorized access (CVSS 9.8)
-  - High: Xiaomi router authentication bypass
-  - Network topology fully exposed via MQTT
-  - 188 online users identified
+### 综合报告
 
-### 3. [Mihomo Configuration Optimization](mihomo优化规划.md)
-- **Type**: Configuration optimization plan
-- **Key Changes**:
-  - Disable IPv6 (current network not ready)
-  - Enable tcp-concurrent
-  - Create policy groups (AI, STREAM, PROXY)
-  - Security hardening (secret, allow-lan)
+| 报告名称 | 文件路径 | 说明 |
+|----------|----------|------|
+| **九峰职业学校安全评估综合报告** | `九峰职业学校安全评估综合报告.md` | 综合报告，包含所有漏洞、设备、风险评估和建议措施 |
 
-## Directory Structure
+### 原始报告
 
-```
-security/
-├── reports/
-│   ├── 192.168.20.0_24_audit_report.md
-│   ├── 九峰职业学校网络渗透测试报告.md
-│   └── mihomo优化规划.md
-├── nmap_scans/
-├── camera_captures/
-└── ...
-```
+| 报告名称 | 文件路径 | 说明 |
+|----------|----------|------|
+| 192.168.20.0/24 有线网段安全审计报告 | `192.168.20.0_24_audit_report.md` | 有线网段审计报告，包含摄像头、私接设备、漏洞电脑、网络设备等信息 |
+| 九峰职业学校网络渗透测试报告 | `九峰职业学校网络渗透测试报告.md` | 主要渗透测试报告，包含MQTT漏洞、小米路由器漏洞、摄像头安全、网络拓扑分析等详细内容 |
+| 内网资产测绘与安全评估综合报告 | `../wifite2-2.2.5/内网资产测绘与安全评估综合报告.md` | 访客网段资产测绘报告，包含Juniper网关、IoT设备、CVE漏洞等信息 |
 
-## Usage
+---
 
-```bash
-# View audit report
-cat reports/192.168.20.0_24_audit_report.md
+## 报告关系说明
 
-# View penetration test report
-cat reports/九峰职业学校网络渗透测试报告.md
-```
+1. **综合报告** 整合了三个原始报告的所有内容，按专业安全报告格式组织，合并了重复信息
+2. **原始报告** 保留了完整的原始扫描数据和技术细节，可作为参考
+3. 综合报告中的附录包含了原始报告中的所有技术细节
+
+---
+
+## 评估范围
+
+| 网段 | 用途 | 设备数 |
+|------|------|--------|
+| 192.168.20.0/24 | 有线办公网 | 40台 |
+| 10.5.190.0/24 | 无线用户网段 | 120+台 |
+| 192.168.101.0/24 | 设备管理网段 | 70台 |
+| 100.81.80.0/21 | 访客网段 | 101台 |
+
+---
+
+## 关键漏洞摘要
+
+| 严重程度 | 漏洞数量 | 主要漏洞 |
+|----------|----------|----------|
+| 🔴 严重 | 4个 | MQTT无认证、无VLAN隔离、RDP暴露、Redis暴露 |
+| 🟡 高 | 6个 | 私接路由器、摄像头RTSP、同MAC双IP、未加密IoT等 |
+| 🟡 中 | 8个 | Win7 SP1、LPD服务、UPnP、WPS等 |
+| 🟢 低 | 5个 | 无安全审计设备、光猫端口欺骗等 |
+
+---
+
+## 报告生成时间
+
+- 综合报告：2026年6月22日
+- 评估时间跨度：2026年1月8日 - 2026年6月18日
+
+---
+
+**注意：** 本报告仅用于授权的安全评估目的，请妥善保管，避免泄露给未授权人员。
