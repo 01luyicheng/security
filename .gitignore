@@ -15,6 +15,11 @@ wifite2-2.2.5/rockyou.txt
 wifite2-2.2.5/vuln_protocols.json
 wifite2-2.2.5/vuln_protocols.txt
 
+# Password dictionaries
+Password-Dictionary-main/*.txt
+Password-Dictionary-main/*.exe
+wifite2-2.2.5/*.txt
+
 # Large files
 *.zip
 
