@@ -1,0 +1,8 @@
+# Embedded git repos
+mihomo-alpha/
+mihomo-go/
+github.com/
+
+# Other files to ignore
+*.zip
+.DS_Store
