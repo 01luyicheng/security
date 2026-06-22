@@ -1,8 +1,0 @@
-# Nmap 7.94SVN scan initiated Wed Jun 17 19:39:04 2026 as: nmap -sT -Pn -p 1-10000 -oN nmap_ports_73.txt 192.168.20.73
-Nmap scan report for 192.168.20.73
-Host is up (0.00034s latency).
-Not shown: 9999 filtered tcp ports (no-response)
-PORT   STATE SERVICE
-53/tcp open  domain
-
-# Nmap done at Wed Jun 17 19:39:32 2026 -- 1 IP address (1 host up) scanned in 28.12 seconds

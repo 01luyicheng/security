@@ -20,6 +20,11 @@ Password-Dictionary-main/*.txt
 Password-Dictionary-main/*.exe
 wifite2-2.2.5/*.txt
 
+# Network scan results and vulnerability reports
+*.gnmap
+*.xml
+*.json
+
 # Large files
 *.zip
 
