@@ -3,8 +3,14 @@ mihomo-alpha/
 mihomo-go/
 github.com/
 
+# Downloaded packages
+sing-tun.zip
+
 # Large files
 *.zip
 
-# Other
+# System files
 .DS_Store
+*.swp
+*.swo
+*~
