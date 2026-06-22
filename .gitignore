@@ -12,6 +12,8 @@ wifite2-2.2.5/hs/
 wifite2-2.2.5/handshakes_export/
 wifite2-2.2.5/cracked.txt
 wifite2-2.2.5/rockyou.txt
+wifite2-2.2.5/vuln_protocols.json
+wifite2-2.2.5/vuln_protocols.txt
 
 # Large files
 *.zip
