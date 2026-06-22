@@ -1,0 +1,26 @@
+# Nmap 7.94SVN scan initiated Wed Jun 17 19:35:49 2026 as: nmap -sn -oG nmap_discovery.gnmap 192.168.20.0/24
+Host: 192.168.20.1 ()	Status: Up
+Host: 192.168.20.2 ()	Status: Up
+Host: 192.168.20.3 ()	Status: Up
+Host: 192.168.20.5 ()	Status: Up
+Host: 192.168.20.6 ()	Status: Up
+Host: 192.168.20.7 ()	Status: Up
+Host: 192.168.20.8 ()	Status: Up
+Host: 192.168.20.9 ()	Status: Up
+Host: 192.168.20.11 ()	Status: Up
+Host: 192.168.20.12 ()	Status: Up
+Host: 192.168.20.13 ()	Status: Up
+Host: 192.168.20.14 ()	Status: Up
+Host: 192.168.20.16 ()	Status: Up
+Host: 192.168.20.18 ()	Status: Up
+Host: 192.168.20.19 ()	Status: Up
+Host: 192.168.20.20 ()	Status: Up
+Host: 192.168.20.21 ()	Status: Up
+Host: 192.168.20.23 ()	Status: Up
+Host: 192.168.20.24 ()	Status: Up
+Host: 192.168.20.25 ()	Status: Up
+Host: 192.168.20.26 ()	Status: Up
+Host: 192.168.20.45 ()	Status: Up
+Host: 192.168.20.50 ()	Status: Up
+Host: 192.168.20.90 ()	Status: Up
+# Nmap done at Wed Jun 17 19:35:51 2026 -- 256 IP addresses (24 hosts up) scanned in 2.12 seconds
